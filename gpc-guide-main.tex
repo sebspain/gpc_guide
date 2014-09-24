@@ -1,21 +1,31 @@
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{graphicx}
-
 \usepackage[margin=2cm]{geometry}
 
+%basic document information
 \author{Seb Spain}
 \date{\today}
 \title{Macromolecule Molecular Weight Determination with Gel Permeation Chromatography: Beginner to Advanced}
 
+%set line spacing
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\arraystretch}{.8}%sets line spacing in tables as multiple of baselinestretch
 
 %define some custom commands for commonly used symbols etc
-
 \newcommand{\Mn}{\emph{M}$_n$}
 \newcommand{\Mw}{\emph{M}$_w$}
 \newcommand*{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+%use symbols for footnotes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%define fonts. required for some of the symbols (e.g. \DJ)
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
 
 \begin{document}
 \maketitle
@@ -32,10 +42,62 @@
 \newpage
 \addcontentsline{toc}{section}{Preface}
 \section*{Preface}
-
+This guide has been written to provide an introduction to the determination of macromolecule molecular weights using gel permeation chromatography (GPC). The majority of the text is generally applicable to GPC and progresses from the basic principles of separation through to advanced topics such as light-scattering theory for absolute molecular weight determination. The appendices at the end of this document provide specific information in regard to the calibration, operation and maintenance of the GPCs in the Alexander group, University of Nottingham, as well as useful information such as constants and literature values.
 \section*{Copyright}
+Copyright (c) 2011--2014 Seb Spain
+
+This document is licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported (CC BY-NC 3.0) license. Briefly this means that you are free to share and modify this work for non-commercial means as long as the author is acknowledged. For the full legal information see \href{http://creativecommons.org/licenses/by-nc/3.0/legalcode}{http://creativecommons.org/licenses/by-nc/3.0/legalcode.}
+
 \newpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
+
+\section{Polymer ``Molecular Weights''}
+Ignoring isotopic variation, small molecules (typically those $\leq1000$ Da) can be considered to have a single molecular weight; that is, all molecules in a sample share the same value.
+Conversely, most macromolecule samples, e.g. synthetic polymers, polysaccharides and many proteins,\footnote{Although proteins are typically translated indentical, post-translation modification can lead to isoforms of differing molecular weights.} contain a mixed population of chain lengths that cannot be easily defined using the small molecule definition of molecular weight.
+Consequently, several definitions of macromolecular molecular weight have been established with the most common of these being the number-average molecular weight, \Mn, and the weight-average molecular weight, \Mw; the ratio of these values (\Mw/\Mn) is the dispersity, \DJ\ (commonly refered to as polydispersity, polydispersity index or PDI). 
+
+\subsection{Why do you need more than one definition of molecular weight?}
+As macromolecular samples contain a distribution of individual molecular weights using a single value to define a sample can tell us very little about the sample itself.
+Taking this to the extreme, we can consider a polymer sample that contains equal numbers chains of only two molecular weights: 25 and 100~kDa.
+In this case the number-average molecular weight is 62.5~kDa, a value that no molecule in our sample possesses, if we were to use this value alone we would be making some very poor assumptions about the sample.
+The weight-average molecular weight and polydisperisty index for this example are 85~kDa and 1.36 respectively and, these values together give us a clearer idea of the contents of the sample and the variability.
+
+Additionally, \Mn\ and \Mw\ are relevant to different properties of a polymer.
+\Mn\ is of great importance for properties that are dependent not on the nature of the molecule but only on their number (colligative properties) such as osmotic pressure and freezing point depression.
+\Mn\ is also the most commonly quoted valued of molecular weight in the living/controlled polymerisation community as this is this value predicted/targeted by the initial monomer:initiator feed ratio and is required when targeting subsequent blocks.
+\Mw\ is important for properties that depend on both the number and size of chains within a sample such as viscosity and mechanical strength. 
+
+\subsection{Number-average molecular weight, \Mn}
+The number-average molecular weight is the simplest to understand  as it is what is commonly known as the average (or, more correctly, the mean) of the sample weights; mathematically it is defined by equation \ref{eqn:Mn}. 
+
+\begin{equation}
+\label{eqn:Mn}
+M_n  =  \frac{\displaystyle{
+\sum_{i=1}^\infty{M_i N_i}}}{\displaystyle{\sum_{i=1}^\infty{N_i}}} \equiv \frac{\textrm{Total mass of polymer}}{\textrm{Total number of chains}}
+\end{equation}
+
+Additionally $N_i/\sum{N_i}$ is the number (or mole) fraction of chains with weight $M_i$ (i.e. the fraction of molecules of weight $M_i$) and thus:
+\begin{equation}
+\label{eqn:Mn2}
+M_n = \displaystyle{
+\sum_{i=1}^\infty{X_i M_i}}
+\end{equation}
+where ${X}_i$ is the number fraction of chains of mass $M_i$.
+
+\subsection{Weight-average molecular weight, \Mw}
+The weight-average molecular weight is slightly harder to understand than \Mn\ but equally important in understanding and predicting a polymer's properties and behaviour. Mathematically \Mw\ is a weighted average as defined by equation \ref{eqn:Mw} and, by definition, is always $\geq$\Mn. 
+\begin{equation}
+\label{eqn:Mw}
+M_w  =  \frac{\displaystyle{
+\sum_{i=1}^\infty{M_i^2 N_i}}}{\displaystyle{\sum_{i=1}^\infty{M_i N_i}}}
+\end{equation}
+Additionally as $N_i M_i/\sum{N_i M_i}$ is the weight fraction of the polymer (i.e. the fraction of sample weight due to chains of weight $M_i$) equation \ref{eqn:Mw} may be reduced to
+\begin{equation}
+\label{eqn:Mw2}
+M_w = \displaystyle{
+\sum_{i=1}^\infty{{\omega}_i M_i}}
+\end{equation}
+where $\omega_i$ is the weight fraction of chains of mass $M_i$.
 
 \end{document}
